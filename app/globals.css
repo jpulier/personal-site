@@ -1,0 +1,386 @@
+@import "tailwindcss";
+
+/* ========================================
+   FONTS
+   ======================================== */
+
+@font-face {
+  font-family: "MonoHead";
+  src: url("/fonts/SpaceMono-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MonoHead";
+  src: url("/fonts/SpaceMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "LCDMono";
+  src: url("/fonts/digital-7-mono.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ========================================
+   BASE / RESET
+   ======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "MonoHead", "Courier New", monospace;
+  color: #000;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* ========================================
+   BACKGROUND — layered noisy bands
+   ======================================== */
+
+.site-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  isolation: isolate;
+  background: #eea177;
+}
+
+.bg-wrapper {
+  position: absolute;
+  top: -22%;
+  left: -22%;
+  width: 144%;
+  height: 144%;
+  pointer-events: none;
+  animation: background-drift 18s linear infinite;
+}
+
+.bg-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.bg-bands {
+  z-index: 1;
+  background-image: repeating-linear-gradient(
+    170deg,
+    #f3eee7 0px,
+    #f3eee7 98px,
+    #f0a075 98px,
+    #f0a075 196px,
+    #bff0af 196px,
+    #bff0af 290px,
+    #ef9b72 290px,
+    #ef9b72 386px
+  );
+  background-repeat: repeat;
+  background-size: 100% 430px;
+  opacity: 0.97;
+  filter: blur(11px) saturate(124%) contrast(112%);
+  transform: scale(1.1);
+}
+
+.bg-blobs {
+  z-index: 2;
+  background-image:
+    radial-gradient(ellipse 30% 16% at 10% 18%, rgba(255, 67, 58, 0.92) 0%, rgba(255, 67, 58, 0.63) 36%, transparent 72%),
+    radial-gradient(ellipse 30% 16% at 55% 29%, rgba(255, 63, 56, 0.89) 0%, rgba(255, 63, 56, 0.62) 36%, transparent 72%),
+    radial-gradient(ellipse 30% 16% at 88% 42%, rgba(255, 60, 54, 0.88) 0%, rgba(255, 60, 54, 0.6) 35%, transparent 72%),
+    radial-gradient(ellipse 31% 16% at 28% 67%, rgba(255, 63, 57, 0.91) 0%, rgba(255, 63, 57, 0.63) 36%, transparent 73%),
+    radial-gradient(ellipse 31% 16% at 75% 78%, rgba(255, 59, 53, 0.9) 0%, rgba(255, 59, 53, 0.62) 36%, transparent 72%),
+    radial-gradient(ellipse 30% 16% at 8% 92%, rgba(255, 67, 58, 0.9) 0%, rgba(255, 67, 58, 0.62) 35%, transparent 72%);
+  background-repeat: no-repeat;
+  mix-blend-mode: multiply;
+  opacity: 0.82;
+  filter: blur(7px) saturate(142%);
+}
+
+@keyframes background-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-200px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-wrapper {
+    animation: none;
+  }
+}
+
+/* ========================================
+   MAIN CONTENT
+   ======================================== */
+
+.main-content {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+/* ========================================
+   CARD
+   ======================================== */
+
+.card-wrapper {
+  position: relative;
+  max-width: 440px;
+  width: 100%;
+}
+
+/* Diamond corners */
+.diamond {
+  position: absolute;
+  z-index: 3;
+}
+
+.diamond.top-left {
+  top: -9px;
+  left: -9px;
+}
+
+.diamond.top-right {
+  top: -9px;
+  right: -9px;
+}
+
+.diamond.bottom-left {
+  bottom: -9px;
+  left: -9px;
+}
+
+.diamond.bottom-right {
+  bottom: -9px;
+  right: -9px;
+}
+
+/* Edge lines connecting diamonds */
+.edge-line {
+  position: absolute;
+  background: black;
+  z-index: 2;
+}
+
+.edge-top {
+  top: 0;
+  left: 9px;
+  right: 9px;
+  height: 1px;
+}
+
+.edge-bottom {
+  bottom: 0;
+  left: 9px;
+  right: 9px;
+  height: 1px;
+}
+
+.edge-left {
+  top: 9px;
+  bottom: 9px;
+  left: 0;
+  width: 1px;
+}
+
+.edge-right {
+  top: 9px;
+  bottom: 9px;
+  right: 0;
+  width: 1px;
+}
+
+/* Inner card */
+.card-inner {
+  border: 2px solid black;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(1px);
+}
+
+/* Card layout */
+.card-top {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.card-left {
+  flex: 1;
+}
+
+.card-right {
+  flex-shrink: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+/* ========================================
+   HEADING
+   ======================================== */
+
+.site-heading {
+  font-family: "MonoHead", "Courier New", monospace;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: rgb(30, 30, 30);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+/* ========================================
+   MESSAGE BOX
+   ======================================== */
+
+.message-box {
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+.message-text {
+  font-family: "MonoHead", "Courier New", monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.7;
+  letter-spacing: 0.06em;
+  color: rgb(30, 30, 30);
+  text-transform: uppercase;
+}
+
+.message-subtitle {
+  margin-top: 8px;
+  font-weight: 400;
+  color: rgb(80, 75, 68);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+}
+
+/* ========================================
+   CONTACT STRIP
+   ======================================== */
+
+.contact-strip {
+  background: rgba(255, 238, 8, 0.53);
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 16px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  color: rgb(54, 54, 54);
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-link:hover {
+  transform: scale(1.1);
+  opacity: 0.7;
+}
+
+
+/* ========================================
+   EYE ILLUSTRATION
+   ======================================== */
+
+.eye-illustration {
+  width: 160px;
+  height: auto;
+  cursor: pointer;
+}
+
+.eye-arch-bg {
+  fill: transparent;
+  pointer-events: all;
+  transition: fill 0.3s ease;
+}
+
+.eye-illustration:hover .eye-arch-bg {
+  fill: rgba(255, 238, 8, 0.53);
+}
+
+/* Eyelid blink animation */
+.eye-eyelid {
+  fill: rgba(255, 238, 8, 0.53);
+  transform-box: fill-box;
+  transform-origin: center top;
+  animation: blink 5s infinite;
+}
+
+@keyframes blink {
+  0%, 86% {
+    transform: scaleY(0);
+    animation-timing-function: ease-in;
+  }
+  91% {
+    transform: scaleY(1);
+    animation-timing-function: linear;
+  }
+  95% {
+    transform: scaleY(1);
+    animation-timing-function: ease-out;
+  }
+  99%, 100% {
+    transform: scaleY(0);
+  }
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 600px) {
+  .card-top {
+    flex-direction: column;
+  }
+
+  .card-right {
+    justify-content: flex-end;
+  }
+
+  .eye-illustration {
+    width: 90px;
+  }
+
+  .site-heading {
+    font-size: 1.1rem;
+  }
+
+
+  .card-inner {
+    padding: 16px;
+  }
+}

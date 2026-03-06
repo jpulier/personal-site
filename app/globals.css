@@ -206,7 +206,8 @@ body {
 
 .home-portrait {
   width: 329px;
-  height: 406px;
+  height: 329px;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
 }

@@ -20,7 +20,7 @@ export default function Home() {
               src="/portrait.jpg"
               alt="Jake Pulier"
               width={500}
-              height={600}
+              height={500}
               priority
               className="home-portrait"
             />

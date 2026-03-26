@@ -1,7 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      {
+        source: "/lovemewrong",
+        destination: "https://too.fm/ere4zpa",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

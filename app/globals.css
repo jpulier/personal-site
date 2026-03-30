@@ -29,8 +29,12 @@
 }
 
 /* ========================================
-   BASE / RESET
+   BASE
    ======================================== */
+
+html {
+  scroll-behavior: smooth;
+}
 
 * {
   margin: 0;
@@ -40,494 +44,421 @@
 
 body {
   font-family: "MonoHead", "Courier New", monospace;
-  color: #000;
-  overflow: hidden;
-  width: 100vw;
-  height: 100vh;
-}
-
-/* ========================================
-   BACKGROUND — layered noisy bands
-   ======================================== */
-
-.site-container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  isolation: isolate;
-  background: #7799cc;
-}
-
-.bg-wrapper {
-  position: absolute;
-  top: -22%;
-  left: -22%;
-  width: 144%;
-  height: 144%;
-  pointer-events: none;
-  animation: background-drift 18s linear infinite;
-}
-
-.bg-layer {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.bg-bands {
-  z-index: 1;
-  background-image: repeating-linear-gradient(
-    170deg,
-    #e7eef5 0px,
-    #e7eef5 98px,
-    #7590d0 98px,
-    #7590d0 196px,
-    #afcbf0 196px,
-    #afcbf0 290px,
-    #728fdf 290px,
-    #728fdf 386px
-  );
-  background-repeat: repeat;
-  background-size: 100% 430px;
-  opacity: 0.97;
-  filter: blur(11px) saturate(124%) contrast(112%);
-  transform: scale(1.1);
-}
-
-.bg-blobs {
-  z-index: 2;
-  background-image:
-    radial-gradient(ellipse 30% 16% at 10% 18%, rgba(58, 90, 255, 0.92) 0%, rgba(58, 90, 255, 0.63) 36%, transparent 72%),
-    radial-gradient(ellipse 30% 16% at 55% 29%, rgba(56, 85, 255, 0.89) 0%, rgba(56, 85, 255, 0.62) 36%, transparent 72%),
-    radial-gradient(ellipse 30% 16% at 88% 42%, rgba(54, 80, 255, 0.88) 0%, rgba(54, 80, 255, 0.6) 35%, transparent 72%),
-    radial-gradient(ellipse 31% 16% at 28% 67%, rgba(57, 87, 255, 0.91) 0%, rgba(57, 87, 255, 0.63) 36%, transparent 73%),
-    radial-gradient(ellipse 31% 16% at 75% 78%, rgba(53, 78, 255, 0.9) 0%, rgba(53, 78, 255, 0.62) 36%, transparent 72%),
-    radial-gradient(ellipse 30% 16% at 8% 92%, rgba(58, 90, 255, 0.9) 0%, rgba(58, 90, 255, 0.62) 35%, transparent 72%);
-  background-repeat: no-repeat;
-  mix-blend-mode: multiply;
-  opacity: 0.82;
-  filter: blur(7px) saturate(142%);
-}
-
-@keyframes background-drift {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-200px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bg-wrapper {
-    animation: none;
-  }
-}
-
-/* ========================================
-   HOME PAGE
-   ======================================== */
-
-.home-container {
-  position: relative;
-  width: 100vw;
-  min-height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
   background: #f5f0eb;
-}
-
-.home-nav {
-  position: absolute;
-  top: 28px;
-  left: 36px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  z-index: 10;
-}
-
-.home-nav-link {
-  font-family: "Garamond", "Times New Roman", Times, Georgia, serif !important;
-  font-size: 0.85rem;
-  font-weight: 400;
-  color: #c2185b;
-  text-decoration: none;
-  letter-spacing: 0.03em;
-  border: none;
-  outline: none;
-  background: none;
-  padding: 0;
-  transition: opacity 0.25s ease;
-}
-
-.home-nav-link:hover {
-  opacity: 0.5;
-}
-
-.home-nav-sep {
-  font-family: "Garamond", "Times New Roman", Times, Georgia, serif;
-  font-size: 0.85rem;
-  color: #c2185b;
-  opacity: 0.4;
-  user-select: none;
-  padding: 0 2px;
-}
-
-.home-content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 100vh;
-  gap: 32px;
-  padding: 100px 20px 60px;
-}
-
-.home-hero {
-  position: relative;
-  display: inline-block;
-}
-
-.home-portrait-link {
-  position: relative;
-  display: block;
-  transition: transform 0.4s ease;
-}
-
-.home-portrait-link:hover {
-  transform: scale(1.01);
-}
-
-.home-portrait {
-  width: 329px;
-  height: 329px;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  display: block;
-}
-
-.home-name {
-  font-family: "Garamond", "Times New Roman", Times, Georgia, serif;
-  font-size: 2rem;
-  font-weight: 600;
-  color: #c2185b;
-  letter-spacing: -0.02em;
-  text-transform: lowercase;
-}
-
-.home-socials {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.home-socials a {
-  display: flex;
-  align-items: center;
-  color: #c2185b;
-  text-decoration: none;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.home-socials a:hover {
-  opacity: 0.5;
-  transform: translateY(-2px);
-}
-
-.home-subscribe {
-  font-family: "Garamond", "Times New Roman", Times, Georgia, serif;
-  font-size: 0.9rem;
-  color: #c2185b;
-  text-decoration: none;
-  letter-spacing: 0.03em;
-  transition: opacity 0.25s ease;
-  padding-bottom: 20px;
-}
-
-.home-subscribe:hover {
-  opacity: 0.5;
-}
-
-@media (max-width: 600px) {
-  .home-portrait {
-    width: 180px;
-    height: 220px;
-  }
-
-  .home-name {
-    font-size: 1.6rem;
-  }
-
-  .home-nav {
-    left: 20px;
-    top: 20px;
-  }
-
-  .home-socials {
-    gap: 18px;
-  }
+  color: #1a1a1a;
 }
 
 /* ========================================
-   MAIN CONTENT
+   MARQUEE TICKER
    ======================================== */
 
-.main-content {
-  position: relative;
-  z-index: 4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  padding: 20px;
+.marquee {
+  background: #c2185b;
+  overflow: hidden;
+  padding: 8px 0;
+  white-space: nowrap;
+}
+
+.marquee-content {
+  display: inline-flex;
+  width: max-content;
+  animation: marquee-scroll 20s linear infinite;
+}
+
+.marquee-content span {
+  color: #fff;
+  text-transform: uppercase;
+  font-family: "MonoHead", "Courier New", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 /* ========================================
-   CARD
+   NAV BAR
    ======================================== */
 
-.card-wrapper {
-  position: relative;
-  max-width: 440px;
-  width: 100%;
-}
-
-/* Diamond corners */
-.diamond {
-  position: absolute;
-  z-index: 3;
-}
-
-.diamond.top-left {
-  top: -9px;
-  left: -9px;
-}
-
-.diamond.top-right {
-  top: -9px;
-  right: -9px;
-}
-
-.diamond.bottom-left {
-  bottom: -9px;
-  left: -9px;
-}
-
-.diamond.bottom-right {
-  bottom: -9px;
-  right: -9px;
-}
-
-/* Edge lines connecting diamonds */
-.edge-line {
-  position: absolute;
-  background: black;
-  z-index: 2;
-}
-
-.edge-top {
-  top: 0;
-  left: 9px;
-  right: 9px;
-  height: 1px;
-}
-
-.edge-bottom {
-  bottom: 0;
-  left: 9px;
-  right: 9px;
-  height: 1px;
-}
-
-.edge-left {
-  top: 9px;
-  bottom: 9px;
-  left: 0;
-  width: 1px;
-}
-
-.edge-right {
-  top: 9px;
-  bottom: 9px;
-  right: 0;
-  width: 1px;
-}
-
-/* Inner card */
-.card-inner {
-  border: 2px solid black;
-  border-radius: 12px;
-  padding: 20px;
-  margin: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(1px);
-}
-
-/* Card layout */
-.card-top {
+.retro-nav {
+  background: #000;
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   gap: 16px;
-  margin-bottom: 16px;
-}
-
-.card-left {
-  flex: 1;
-}
-
-.card-right {
-  flex-shrink: 0;
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-}
-
-/* ========================================
-   HEADING
-   ======================================== */
-
-.site-heading {
-  font-family: "MonoHead", "Courier New", monospace;
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  color: rgb(30, 30, 30);
-  margin-bottom: 14px;
-  text-transform: uppercase;
-}
-
-/* ========================================
-   MESSAGE BOX
-   ======================================== */
-
-.message-box {
-  border: 2px solid black;
-  border-radius: 8px;
-  padding: 14px 16px;
-}
-
-.message-text {
-  font-family: "MonoHead", "Courier New", monospace;
-  font-size: 0.82rem;
-  font-weight: 700;
-  line-height: 1.7;
-  letter-spacing: 0.06em;
-  color: rgb(30, 30, 30);
-  text-transform: uppercase;
-}
-
-.message-subtitle {
-  margin-top: 8px;
-  font-weight: 400;
-  color: rgb(80, 75, 68);
-  font-size: 0.74rem;
-  letter-spacing: 0.08em;
-}
-
-/* ========================================
-   CONTACT STRIP
-   ======================================== */
-
-.contact-strip {
-  background: rgba(255, 238, 8, 0.53);
-  border: 2px solid black;
-  border-radius: 8px;
   padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  gap: 16px;
 }
 
-.social-link {
-  display: flex;
-  align-items: center;
-  color: rgb(54, 54, 54);
+.retro-nav a {
+  color: #fff;
+  text-transform: uppercase;
+  font-family: "MonoHead", "Courier New", monospace;
+  border: 2px solid #fff;
+  padding: 8px 24px;
   text-decoration: none;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.social-link:hover {
-  transform: scale(1.1);
-  opacity: 0.7;
-}
-
-
-/* ========================================
-   EYE ILLUSTRATION
-   ======================================== */
-
-.eye-illustration {
-  width: 160px;
-  height: auto;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  transition: background 0.2s ease, text-shadow 0.2s ease;
   cursor: pointer;
 }
 
-.eye-arch-bg {
-  fill: transparent;
-  pointer-events: all;
-  transition: fill 0.3s ease;
+.retro-nav a:hover {
+  background: #c2185b;
+  text-shadow: 0 0 8px rgba(194, 24, 91, 0.5);
 }
 
-.eye-illustration:hover .eye-arch-bg {
-  fill: rgba(255, 238, 8, 0.53);
+/* ========================================
+   PANEL GRID
+   ======================================== */
+
+.panel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 20px 40px;
 }
 
-/* Eyelid blink animation */
-.eye-eyelid {
-  fill: rgba(255, 238, 8, 0.53);
-  transform-box: fill-box;
-  transform-origin: center top;
-  animation: blink 5s infinite;
+.panel-full {
+  grid-column: span 2;
 }
 
-@keyframes blink {
-  0%, 86% {
-    transform: scaleY(0);
-    animation-timing-function: ease-in;
+.panel {
+  background: #fff;
+  border: 2.5px solid #000;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.panel:hover {
+  transform: translateY(-3px);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15);
+}
+
+.panel:nth-child(1) { animation-delay: 0.1s; }
+.panel:nth-child(2) { animation-delay: 0.2s; }
+.panel:nth-child(3) { animation-delay: 0.3s; }
+.panel:nth-child(4) { animation-delay: 0.4s; }
+.panel:nth-child(5) { animation-delay: 0.5s; }
+.panel:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  91% {
-    transform: scaleY(1);
-    animation-timing-function: linear;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  95% {
-    transform: scaleY(1);
-    animation-timing-function: ease-out;
-  }
-  99%, 100% {
-    transform: scaleY(0);
-  }
+}
+
+.panel-header {
+  border-bottom: 2px dotted #000;
+  padding: 10px 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #c2185b;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+}
+
+.panel-body {
+  padding: 20px;
+  color: #888;
+  font-size: 0.8rem;
+}
+
+/* ========================================
+   PROFILE PANEL
+   ======================================== */
+
+.profile-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.profile-photo-area {
+  flex-shrink: 0;
+}
+
+.profile-photo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 2.5px solid #000;
+  display: block;
+}
+
+.online-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.online-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00ff00;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+.online-text {
+  font-size: 0.7rem;
+  color: #00aa00;
+  font-style: italic;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #c2185b;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.profile-divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 10px 0;
+}
+
+.profile-detail {
+  font-size: 0.8rem;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.profile-detail-label {
+  color: #888;
+  font-size: 0.75rem;
+}
+
+/* ========================================
+   PANEL UTILITIES
+   ======================================== */
+
+.panel-accent-label {
+  font-weight: 700;
+  color: #c2185b;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.panel-description {
+  font-size: 0.8rem;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+/* ========================================
+   BLURBS (ABOUT PANEL)
+   ======================================== */
+
+.blurb-label {
+  color: #c2185b;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  font-family: "MonoHead", "Courier New", monospace;
+}
+
+.blurb-text {
+  font-size: 0.95rem;
+  color: #1a1a1a;
+  line-height: 1.8;
+  font-family: "MonoHead", "Courier New", monospace;
+}
+
+/* ========================================
+   LISTEN PANEL
+   ======================================== */
+
+.listen-embed {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.listen-embed iframe {
+  width: 100%;
+  border: none;
+  display: block;
+}
+
+/* ========================================
+   WATCH PANEL
+   ======================================== */
+
+.watch-embed {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.watch-embed iframe {
+  width: 100%;
+  border: none;
+  display: block;
+  border-radius: 8px;
+}
+
+/* ========================================
+   REUSABLE RETRO BUTTON
+   ======================================== */
+
+.retro-button {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  border: 2px solid #000;
+  padding: 10px 24px;
+  text-transform: uppercase;
+  font-family: "MonoHead", "Courier New", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+  margin-top: 14px;
+}
+
+.retro-button:hover {
+  background: #c2185b;
+  border-color: #c2185b;
+}
+
+/* ========================================
+   LINKS PANEL
+   ======================================== */
+
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.link-box {
+  display: block;
+  background: #fff;
+  border: 2px solid #000;
+  padding: 12px 16px;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+  font-family: "MonoHead", "Courier New", monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+}
+
+.link-box:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* ========================================
+   SHOP PANEL
+   ======================================== */
+
+.shop-teaser {
+  font-size: 0.85rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.shop-subtle {
+  font-size: 0.75rem;
+  color: #aaa;
+  font-style: italic;
+  margin-top: 8px;
+}
+
+/* ========================================
+   HIT COUNTER
+   ======================================== */
+
+.hit-counter-wrap {
+  text-align: center;
+  padding: 0 20px 8px;
+}
+
+.hit-counter-wrap {
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  display: inline-block;
+  margin: 20px auto;
+  background: #fff;
+  /* center the inline-block */
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hit-counter-label {
+  font-family: "MonoHead", "Courier New", monospace;
+  font-size: 0.7rem;
+  color: #888;
+}
+
+.hit-counter-number {
+  font-family: "LCDMono", "Courier New", monospace;
+  font-size: 1.1rem;
+  color: #c2185b;
+  letter-spacing: 0.1em;
 }
 
 /* ========================================
    RESPONSIVE
    ======================================== */
 
-@media (max-width: 600px) {
-  .card-top {
+@media (max-width: 700px) {
+  .panel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .panel-full {
+    grid-column: span 1;
+  }
+
+  .profile-layout {
     flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
-  .card-right {
-    justify-content: flex-end;
+  .profile-photo {
+    width: 160px;
+    height: 160px;
   }
 
-  .eye-illustration {
-    width: 90px;
-  }
-
-  .site-heading {
-    font-size: 1.1rem;
-  }
-
-
-  .card-inner {
+  .panel-body {
     padding: 16px;
   }
 }

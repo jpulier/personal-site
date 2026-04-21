@@ -94,9 +94,8 @@ export default function Home() {
           <div className="panel-header">Watch</div>
           <div className="panel-body">
             <div className="watch-embed">
-              {/* TODO: replace with actual YouTube video ID */}
               <iframe
-                src="https://www.youtube.com/embed/oDk8IeeiS4E"
+                src="https://www.youtube.com/embed/x4gqq84fz9U"
                 width="100%"
                 height={300}
                 frameBorder="0"

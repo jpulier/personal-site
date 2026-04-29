@@ -189,12 +189,44 @@ body {
   flex-shrink: 0;
 }
 
+.profile-photo-wrapper {
+  cursor: pointer;
+  position: relative;
+}
+
 .profile-photo {
   width: 200px;
   height: 200px;
   object-fit: cover;
   border: 2.5px solid #000;
   display: block;
+  transition: filter 0.2s ease;
+}
+
+.profile-photo-wrapper:hover .profile-photo {
+  filter: brightness(1.1);
+}
+
+.portrait-launch .profile-photo {
+  animation: portrait-spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes portrait-spin {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+    border-radius: 0;
+  }
+  50% {
+    transform: scale(1.15) rotate(180deg);
+    opacity: 1;
+    border-radius: 50%;
+  }
+  100% {
+    transform: scale(0) rotate(720deg);
+    opacity: 0;
+    border-radius: 50%;
+  }
 }
 
 .online-indicator {
@@ -456,6 +488,10 @@ body {
   .profile-photo {
     width: 160px;
     height: 160px;
+  }
+
+  .profile-photo-wrapper {
+    display: inline-block;
   }
 
   .panel-body {

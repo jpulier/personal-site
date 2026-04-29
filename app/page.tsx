@@ -1,6 +1,7 @@
 import Image from "next/image";
 import LastLogin from "@/components/LastLogin";
 import HitCounter from "@/components/HitCounter";
+import ProfilePhoto from "@/components/ProfilePhoto";
 
 export default function Home() {
   const navLinks = [
@@ -40,14 +41,7 @@ export default function Home() {
           <div className="panel-body">
             <div className="profile-layout">
               <div className="profile-photo-area">
-                <Image
-                  src="/portrait.jpg"
-                  alt="PULYAY"
-                  width={200}
-                  height={200}
-                  priority
-                  className="profile-photo"
-                />
+                <ProfilePhoto />
                 <div className="online-indicator">
                   <span className="online-dot" />
                   <span className="online-text">Online Now!</span>

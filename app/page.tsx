@@ -8,7 +8,7 @@ export default function Home() {
     { label: "Listen", href: "#listen" },
     { label: "Watch", href: "#watch" },
     { label: "About", href: "#about" },
-    { label: "Shop", href: "#shop" },
+    { label: "Play", href: "#play" },
   ];
 
   const nav = (
@@ -134,11 +134,19 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="shop" className="panel">
-          <div className="panel-header">Shop</div>
+        <section id="play" className="panel">
+          <div className="panel-header">Play</div>
           <div className="panel-body">
-            <div className="shop-teaser">&#128284; MERCH COMING SOON</div>
-            <p className="shop-subtle">stay tuned</p>
+            <div className="shop-teaser">&#127918; BRICK BREAKER</div>
+            <p className="shop-subtle">break some bricks to pulyay tracks</p>
+            <a
+              href="https://game-liart-tau.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="retro-button"
+            >
+              PLAY NOW &rarr;
+            </a>
           </div>
         </section>
       </div>

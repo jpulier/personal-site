@@ -471,6 +471,16 @@ body {
    ======================================== */
 
 @media (max-width: 700px) {
+  .retro-nav {
+    gap: 8px;
+    padding: 12px 10px;
+  }
+
+  .retro-nav a {
+    padding: 8px 12px;
+    font-size: 0.7rem;
+  }
+
   .panel-grid {
     grid-template-columns: 1fr;
   }
